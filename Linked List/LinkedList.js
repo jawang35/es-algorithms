@@ -5,6 +5,10 @@ class Node {
 }
 
 export default class LinkedList {
+  constructor() {
+    this.head = null
+  }
+
   insert = (value, index = 0) => {
     if (index < 0) throw new Error('Index cannot be negative')
 
@@ -42,7 +46,7 @@ export default class LinkedList {
   last = () => {
     let node = this.head
 
-    if (!node) return undefined
+    if (!node) return null
 
     while (node.next) {
       node = node.next

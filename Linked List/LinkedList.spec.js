@@ -9,7 +9,7 @@ describe('LinkedList', () => {
     const linkedList = new LinkedList()
     expect(linkedList.insert.bind(linkedList, 'Error', -1)).to.throw('Index cannot be negative')
     expect(linkedList.insert.bind(linkedList, 'Error', 1)).to.throw('Index out of range')
-    expect(linkedList.head).to.be.undefined()
+    expect(linkedList.head).to.be.null()
 
     linkedList.insert('First Node', 0)
     expect(linkedList.head.value).to.equal('First Node')
@@ -67,7 +67,7 @@ describe('LinkedList', () => {
 
   it('can find the last node', () => {
     const linkedList = new LinkedList()
-    expect(linkedList.last()).to.be.undefined()
+    expect(linkedList.last()).to.be.null()
 
     linkedList.head = { value: 'First Node' }
     expect(linkedList.last()).to.equal(linkedList.head)
@@ -95,7 +95,7 @@ describe('LinkedList', () => {
 
   it('can retrieve a node at any nonnegative index', () => {
     const linkedList = new LinkedList()
-    expect(linkedList.nodeAtIndex(0)).to.be.undefined()
+    expect(linkedList.nodeAtIndex(0)).to.be.null()
     expect(linkedList.nodeAtIndex.bind(linkedList, -1)).to.throw('Index cannot be negative')
 
     linkedList.head = {
