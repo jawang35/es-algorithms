@@ -191,16 +191,16 @@ describe('LinkedList', () => {
     expect(linkedList.remove.bind(linkedList, -1)).to.throw(indexOutOfRange)
     expect(linkedList.remove.bind(linkedList, 3)).to.throw(indexOutOfRange)
 
-    linkedList.remove(1)
+    expect(linkedList.remove(1)).to.equal('Second Node')
     expect(linkedList.head.value).to.equal('First Node')
     expect(linkedList.head.next.value).to.equal('Third Node')
     expect(linkedList.head.next.next).to.be.null()
 
-    linkedList.remove(1)
+    expect(linkedList.remove(1)).to.equal('Third Node')
     expect(linkedList.head.value).to.equal('First Node')
     expect(linkedList.head.next).to.be.null()
 
-    linkedList.remove(0)
+    expect(linkedList.remove(0)).to.equal('First Node')
     expect(linkedList.head).to.be.null()
   })
 
@@ -208,16 +208,16 @@ describe('LinkedList', () => {
     const linkedList = new LinkedList()
     linkedList.head = threeNodeList()
 
-    linkedList.remove()
+    expect(linkedList.remove()).to.equal('First Node')
     expect(linkedList.head.value).to.equal('Second Node')
     expect(linkedList.head.next.value).to.equal('Third Node')
     expect(linkedList.head.next.next).to.be.null()
 
-    linkedList.remove()
+    expect(linkedList.remove()).to.equal('Second Node')
     expect(linkedList.head.value).to.equal('Third Node')
     expect(linkedList.head.next).to.be.null()
 
-    linkedList.remove()
+    expect(linkedList.remove()).to.equal('Third Node')
     expect(linkedList.head).to.be.null()
   })
 

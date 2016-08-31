@@ -131,7 +131,6 @@ export default class LinkedList {
     return value
   }
 
-  // TODO: Return value removed
   remove = (index = 0) => {
     const { before, node } = this.nodesBeforeAndAt(index)
 
@@ -139,6 +138,8 @@ export default class LinkedList {
 
     if (!before) this.head = node.next
     else before.next = node.next
+
+    return node.value
   }
 
   reverse = () => {
