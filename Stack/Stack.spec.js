@@ -1,8 +1,5 @@
-import chai, { expect } from 'chai'
-import dirtyChai from 'dirty-chai'
+import { expect } from 'chai'
 import Stack from './Stack'
-
-chai.use(dirtyChai)
 
 describe('Stack', () => {
   it('can check if empty', () => {

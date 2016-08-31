@@ -1,9 +1,6 @@
-import chai, { expect } from 'chai'
-import dirtyChai from 'dirty-chai'
+import { expect } from 'chai'
 import deepFreeze from 'deep-freeze'
 import LinkedList from './LinkedList'
-
-chai.use(dirtyChai)
 
 describe('LinkedList', () => {
   const threeNodeList = () => ({
