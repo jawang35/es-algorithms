@@ -138,4 +138,17 @@ export default class LinkedList {
     if (!before) this.head = node.next
     else before.next = node.next
   }
+
+  reverse = () => {
+    let node = this.head
+    let before = null
+
+    while (node) {
+      const next = node.next
+      node.next = before
+      this.head = node
+      before = node
+      node = next
+    }
+  }
 }

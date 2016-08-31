@@ -219,4 +219,22 @@ describe('LinkedList', () => {
     linkedList.remove()
     expect(linkedList.head).to.be.null()
   })
+
+  it('can reverse its nodes', () => {
+    const linkedList = new LinkedList()
+
+    linkedList.reverse()
+    expect(linkedList.head).to.be.null()
+
+    linkedList.head = threeNodeList()
+    linkedList.reverse()
+    expect(linkedList.head.value).to.equal('Third Node')
+    expect(linkedList.head.next.value).to.equal('Second Node')
+    expect(linkedList.head.next.next.value).to.equal('First Node')
+
+    linkedList.reverse()
+    expect(linkedList.head.value).to.equal('First Node')
+    expect(linkedList.head.next.value).to.equal('Second Node')
+    expect(linkedList.head.next.next.value).to.equal('Third Node')
+  })
 })
