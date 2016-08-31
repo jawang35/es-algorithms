@@ -4,32 +4,72 @@ class Node {
   }
 }
 
+const indexOutOfRange = 'Index out of range'
+
 export default class LinkedList {
   constructor() {
     this.head = null
   }
 
-  insert = (value, index = 0) => {
-    if (index < 0) throw new Error('Index cannot be negative')
+  toString = () => {
+    let node = this.head
+    let string = '['
 
-    let prev
-    let next = this.head
+    while (node) {
+      string += node.value.toString()
+      node = node.next
+      if (node) string += ', '
+    }
+
+    return `${string}]`
+  }
+
+  nodeAtIndex = index => {
+    if (index < 0) throw new Error(indexOutOfRange)
+
+    let node = this.head
     let i = index
 
-    while (next && i > 0) {
-      prev = next
-      next = next.next
+    while (node && i > 0) {
+      node = node.next
       i -= 1
     }
 
-    if (i > 0) throw new Error('Index out of range')
+    if (!node) throw new Error(indexOutOfRange)
+
+    return node
+  }
+
+  nodesBeforeAndAt = index => {
+    if (index < 0) throw new Error(indexOutOfRange)
+
+    let before = null
+    let node = this.head
+    let i = index
+
+    while (node && i > 0) {
+      before = node
+      node = node.next || null
+      i -= 1
+    }
+
+    if (i > 0) throw new Error(indexOutOfRange)
+
+    return {
+      before,
+      node
+    }
+  }
+
+  insert = (value, index = 0) => {
+    const { before, node } = this.nodesBeforeAndAt(index)
 
     const newNode = new Node(value)
 
-    if (prev) prev.next = newNode
+    if (before) before.next = newNode
     else this.head = newNode
 
-    newNode.next = next
+    newNode.next = node
   }
 
   append = value => {
@@ -67,17 +107,35 @@ export default class LinkedList {
     return number
   }
 
-  nodeAtIndex = index => {
-    if (index < 0) throw new Error('Index cannot be negative')
+  removeAll = () => {
+    this.head = null
+  }
 
+  removeLast = () => {
     let node = this.head
-    let i = index
 
-    while (node && i > 0) {
-      node = node.next
-      i -= 1
+    if (!node) return null
+
+    if (node && !node.next) {
+      this.head = null
+      return node.value
     }
 
-    return node
+    while (node.next && node.next.next) {
+      node = node.next
+    }
+
+    const value = node.next.value
+    node.next = null
+    return value
+  }
+
+  remove = (index = 0) => {
+    const { before, node } = this.nodesBeforeAndAt(index)
+
+    if (!node) throw new Error(indexOutOfRange)
+
+    if (!before) this.head = node.next
+    else before.next = node.next
   }
 }
