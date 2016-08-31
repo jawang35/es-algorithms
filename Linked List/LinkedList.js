@@ -1,6 +1,7 @@
 class Node {
   constructor(value) {
     this.value = value
+    this.next = null
   }
 }
 
@@ -130,6 +131,7 @@ export default class LinkedList {
     return value
   }
 
+  // TODO: Return value removed
   remove = (index = 0) => {
     const { before, node } = this.nodesBeforeAndAt(index)
 
@@ -150,5 +152,29 @@ export default class LinkedList {
       before = node
       node = next
     }
+  }
+
+  map = transform => {
+    const linkedList = new LinkedList()
+    let node = this.head
+
+    while (node) {
+      linkedList.append(transform(node.value))
+      node = node.next
+    }
+
+    return linkedList
+  }
+
+  filter = predicate => {
+    const linkedList = new LinkedList()
+    let node = this.head
+
+    while (node) {
+      if (predicate(node.value)) linkedList.append(node.value)
+      node = node.next
+    }
+
+    return linkedList
   }
 }

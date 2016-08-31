@@ -1,5 +1,6 @@
 import chai, { expect } from 'chai'
 import dirtyChai from 'dirty-chai'
+import deepFreeze from 'deep-freeze'
 import LinkedList from './LinkedList'
 
 chai.use(dirtyChai)
@@ -108,18 +109,18 @@ describe('LinkedList', () => {
 
     linkedList.append('First Node')
     expect(linkedList.head.value).to.equal('First Node')
-    expect(linkedList.head.next).to.be.undefined()
+    expect(linkedList.head.next).to.be.null()
 
     linkedList.append('Second Node')
     expect(linkedList.head.value).to.equal('First Node')
     expect(linkedList.head.next.value).to.equal('Second Node')
-    expect(linkedList.head.next.next).to.be.undefined()
+    expect(linkedList.head.next.next).to.be.null()
 
     linkedList.append('Third Node')
     expect(linkedList.head.value).to.equal('First Node')
     expect(linkedList.head.next.value).to.equal('Second Node')
     expect(linkedList.head.next.next.value).to.equal('Third Node')
-    expect(linkedList.head.next.next.next).to.be.undefined()
+    expect(linkedList.head.next.next.next).to.be.null()
   })
 
   it('can find the last node', () => {
@@ -236,5 +237,43 @@ describe('LinkedList', () => {
     expect(linkedList.head.value).to.equal('First Node')
     expect(linkedList.head.next.value).to.equal('Second Node')
     expect(linkedList.head.next.next.value).to.equal('Third Node')
+  })
+
+  it('can map node values without mutating original list', () => {
+    const linkedList = new LinkedList()
+
+    const mappedLinkedList1 = linkedList.map(() => true)
+    expect(mappedLinkedList1.head).to.be.null()
+
+    linkedList.head = threeNodeList()
+    deepFreeze(linkedList)
+
+    const mappedLinkedList2 = linkedList.map(value => value.toUpperCase())
+    expect(mappedLinkedList2.head.value).to.equal('FIRST NODE')
+    expect(mappedLinkedList2.head.next.value).to.equal('SECOND NODE')
+    expect(mappedLinkedList2.head.next.next.value).to.equal('THIRD NODE')
+
+    const mappedLinkedList3 = linkedList.map(value => value.length)
+    expect(mappedLinkedList3.head.value).to.equal(10)
+    expect(mappedLinkedList3.head.next.value).to.equal(11)
+    expect(mappedLinkedList3.head.next.next.value).to.equal(10)
+  })
+
+  it('can filter node values without mutating original list', () => {
+    const linkedList = new LinkedList()
+
+    const filteredLinkedList1 = linkedList.filter(() => true)
+    expect(filteredLinkedList1.head).to.be.null()
+
+    linkedList.head = threeNodeList()
+    deepFreeze(linkedList)
+
+    const filteredLinkedList2 = linkedList.filter(value => value.indexOf('i') > -1)
+    expect(filteredLinkedList2.head.value).to.equal('First Node')
+    expect(filteredLinkedList2.head.next.value).to.equal('Third Node')
+    expect(filteredLinkedList2.head.next.next).to.be.null()
+
+    const filteredLinkedList3 = linkedList.filter(() => true)
+    expect(filteredLinkedList3.head).to.deep.equal(linkedList.head)
   })
 })
