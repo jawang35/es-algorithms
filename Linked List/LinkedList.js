@@ -156,26 +156,26 @@ export default class LinkedList {
   }
 
   map = transform => {
-    const linkedList = new LinkedList()
+    const newList = new LinkedList()
     let node = this.head
 
     while (node) {
-      linkedList.append(transform(node.value))
+      newList.append(transform(node.value))
       node = node.next
     }
 
-    return linkedList
+    return newList
   }
 
   filter = predicate => {
-    const linkedList = new LinkedList()
+    const newList = new LinkedList()
     let node = this.head
 
     while (node) {
-      if (predicate(node.value)) linkedList.append(node.value)
+      if (predicate(node.value)) newList.append(node.value)
       node = node.next
     }
 
-    return linkedList
+    return newList
   }
 }
