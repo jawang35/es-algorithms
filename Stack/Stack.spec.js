@@ -25,13 +25,13 @@ describe('Stack', () => {
     const stack = new Stack()
     expect(stack.array).to.deep.equal([])
 
-    stack.push('First Item')
+    expect(stack.push('First Item')).to.be.undefined()
     expect(stack.array).to.deep.equal(['First Item'])
 
-    stack.push('Second Item')
+    expect(stack.push('Second Item')).to.be.undefined()
     expect(stack.array).to.deep.equal(['First Item', 'Second Item'])
 
-    stack.push('Third Item')
+    expect(stack.push('Third Item')).to.be.undefined()
     expect(stack.array).to.deep.equal(['First Item', 'Second Item', 'Third Item'])
   })
 
