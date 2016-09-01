@@ -11,7 +11,7 @@ export default class Stack {
     this.array.push(value)
   }
 
-  pop = () => this.array.pop() || null
+  pop = () => this.array.pop()
 
-  peek = () => this.array[this.array.length - 1] || null
+  peek = () => this.array[this.array.length - 1]
 }

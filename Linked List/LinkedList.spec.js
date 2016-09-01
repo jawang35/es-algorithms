@@ -8,8 +8,7 @@ describe('LinkedList', () => {
     next: {
       value: 'Second Node',
       next: {
-        value: 'Third Node',
-        next: null
+        value: 'Third Node'
       }
     }
   })
@@ -41,7 +40,7 @@ describe('LinkedList', () => {
     linkedList.head = threeNodeList()
 
     expect(linkedList.nodesBeforeAndAt(0)).to.deep.equal({
-      before: null,
+      before: undefined,
       node: linkedList.head
     })
     expect(linkedList.nodesBeforeAndAt(1)).to.deep.equal({
@@ -54,7 +53,7 @@ describe('LinkedList', () => {
     })
     expect(linkedList.nodesBeforeAndAt(3)).to.deep.equal({
       before: linkedList.head.next.next,
-      node: null
+      node: undefined
     })
     expect(linkedList.nodesBeforeAndAt.bind(linkedList, -1)).to.throw(indexOutOfRange)
     expect(linkedList.nodesBeforeAndAt.bind(linkedList, 4)).to.throw(indexOutOfRange)
@@ -64,7 +63,7 @@ describe('LinkedList', () => {
     const linkedList = new LinkedList()
     expect(linkedList.insert.bind(linkedList, 'Error', -1)).to.throw(indexOutOfRange)
     expect(linkedList.insert.bind(linkedList, 'Error', 1)).to.throw(indexOutOfRange)
-    expect(linkedList.head).to.be.null()
+    expect(linkedList.head).to.be.undefined()
 
     expect(linkedList.insert('First Node', 0)).to.be.undefined()
     expect(linkedList.head.value).to.equal('First Node')
@@ -106,23 +105,23 @@ describe('LinkedList', () => {
 
     expect(linkedList.append('First Node')).to.be.undefined()
     expect(linkedList.head.value).to.equal('First Node')
-    expect(linkedList.head.next).to.be.null()
+    expect(linkedList.head.next).to.be.undefined()
 
     expect(linkedList.append('Second Node')).to.be.undefined()
     expect(linkedList.head.value).to.equal('First Node')
     expect(linkedList.head.next.value).to.equal('Second Node')
-    expect(linkedList.head.next.next).to.be.null()
+    expect(linkedList.head.next.next).to.be.undefined()
 
     expect(linkedList.append('Third Node')).to.be.undefined()
     expect(linkedList.head.value).to.equal('First Node')
     expect(linkedList.head.next.value).to.equal('Second Node')
     expect(linkedList.head.next.next.value).to.equal('Third Node')
-    expect(linkedList.head.next.next.next).to.be.null()
+    expect(linkedList.head.next.next.next).to.be.undefined()
   })
 
   it('can find the last node', () => {
     const linkedList = new LinkedList()
-    expect(linkedList.last()).to.be.null()
+    expect(linkedList.last()).to.be.undefined()
 
     linkedList.head = { value: 'First Node' }
     expect(linkedList.last()).to.equal(linkedList.head)
@@ -152,7 +151,7 @@ describe('LinkedList', () => {
     const linkedList = new LinkedList()
     linkedList.head = threeNodeList()
     expect(linkedList.removeAll()).to.be.undefined()
-    expect(linkedList.head).to.be.null()
+    expect(linkedList.head).to.be.undefined()
   })
 
   it('can remove last node', () => {
@@ -164,21 +163,21 @@ describe('LinkedList', () => {
       value: 'First Node',
       next: {
         value: 'Second Node',
-        next: null
+        next: undefined
       }
     })
 
     expect(linkedList.removeLast()).to.equal('Second Node')
     expect(linkedList.head).to.deep.equal({
       value: 'First Node',
-      next: null
+      next: undefined
     })
 
     expect(linkedList.removeLast()).to.equal('First Node')
-    expect(linkedList.head).to.be.null()
+    expect(linkedList.head).to.be.undefined()
 
-    expect(linkedList.removeLast()).to.be.null()
-    expect(linkedList.head).to.be.null()
+    expect(linkedList.removeLast()).to.be.undefined()
+    expect(linkedList.head).to.be.undefined()
   })
 
   it('can remove nodes at a nonnegative index', () => {
@@ -191,14 +190,14 @@ describe('LinkedList', () => {
     expect(linkedList.remove(1)).to.equal('Second Node')
     expect(linkedList.head.value).to.equal('First Node')
     expect(linkedList.head.next.value).to.equal('Third Node')
-    expect(linkedList.head.next.next).to.be.null()
+    expect(linkedList.head.next.next).to.be.undefined()
 
     expect(linkedList.remove(1)).to.equal('Third Node')
     expect(linkedList.head.value).to.equal('First Node')
-    expect(linkedList.head.next).to.be.null()
+    expect(linkedList.head.next).to.be.undefined()
 
     expect(linkedList.remove(0)).to.equal('First Node')
-    expect(linkedList.head).to.be.null()
+    expect(linkedList.head).to.be.undefined()
   })
 
   it('removes the head node by default', () => {
@@ -208,21 +207,21 @@ describe('LinkedList', () => {
     expect(linkedList.remove()).to.equal('First Node')
     expect(linkedList.head.value).to.equal('Second Node')
     expect(linkedList.head.next.value).to.equal('Third Node')
-    expect(linkedList.head.next.next).to.be.null()
+    expect(linkedList.head.next.next).to.be.undefined()
 
     expect(linkedList.remove()).to.equal('Second Node')
     expect(linkedList.head.value).to.equal('Third Node')
-    expect(linkedList.head.next).to.be.null()
+    expect(linkedList.head.next).to.be.undefined()
 
     expect(linkedList.remove()).to.equal('Third Node')
-    expect(linkedList.head).to.be.null()
+    expect(linkedList.head).to.be.undefined()
   })
 
   it('can reverse its nodes', () => {
     const linkedList = new LinkedList()
 
     linkedList.reverse()
-    expect(linkedList.head).to.be.null()
+    expect(linkedList.head).to.be.undefined()
 
     linkedList.head = threeNodeList()
     expect(linkedList.reverse()).to.be.undefined()
@@ -240,7 +239,7 @@ describe('LinkedList', () => {
     const linkedList = new LinkedList()
 
     const mappedLinkedList1 = linkedList.map(() => true)
-    expect(mappedLinkedList1.head).to.be.null()
+    expect(mappedLinkedList1.head).to.be.undefined()
 
     linkedList.head = threeNodeList()
     deepFreeze(linkedList)
@@ -260,7 +259,7 @@ describe('LinkedList', () => {
     const linkedList = new LinkedList()
 
     const filteredLinkedList1 = linkedList.filter(() => true)
-    expect(filteredLinkedList1.head).to.be.null()
+    expect(filteredLinkedList1.head).to.be.undefined()
 
     linkedList.head = threeNodeList()
     deepFreeze(linkedList)
@@ -268,7 +267,7 @@ describe('LinkedList', () => {
     const filteredLinkedList2 = linkedList.filter(value => value.indexOf('i') > -1)
     expect(filteredLinkedList2.head.value).to.equal('First Node')
     expect(filteredLinkedList2.head.next.value).to.equal('Third Node')
-    expect(filteredLinkedList2.head.next.next).to.be.null()
+    expect(filteredLinkedList2.head.next.next).to.be.undefined()
 
     const filteredLinkedList3 = linkedList.filter(() => true)
     expect(filteredLinkedList3.head).to.deep.equal(linkedList.head)

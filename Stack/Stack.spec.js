@@ -51,13 +51,13 @@ describe('Stack', () => {
     expect(stack.pop()).to.equal('First Item')
     expect(stack.array).to.deep.equal([])
 
-    expect(stack.pop()).to.be.null()
+    expect(stack.pop()).to.be.undefined()
     expect(stack.array).to.deep.equal([])
   })
 
   it('can peek at top item', () => {
     const stack = new Stack()
-    expect(stack.peek()).to.be.null()
+    expect(stack.peek()).to.be.undefined()
 
     stack.push('First Item')
     expect(stack.peek()).to.equal('First Item')

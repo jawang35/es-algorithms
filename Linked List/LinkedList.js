@@ -1,17 +1,12 @@
 class Node {
   constructor(value) {
     this.value = value
-    this.next = null
   }
 }
 
 const indexOutOfRange = 'Index out of range'
 
 export default class LinkedList {
-  constructor() {
-    this.head = null
-  }
-
   toString = () => {
     let node = this.head
     let string = '['
@@ -44,13 +39,13 @@ export default class LinkedList {
   nodesBeforeAndAt = index => {
     if (index < 0) throw new Error(indexOutOfRange)
 
-    let before = null
+    let before
     let node = this.head
     let i = index
 
     while (node && i > 0) {
       before = node
-      node = node.next || null
+      node = node.next
       i -= 1
     }
 
@@ -87,7 +82,7 @@ export default class LinkedList {
   last = () => {
     let node = this.head
 
-    if (!node) return null
+    if (!node) return undefined
 
     while (node.next) {
       node = node.next
@@ -109,16 +104,16 @@ export default class LinkedList {
   }
 
   removeAll = () => {
-    this.head = null
+    this.head = undefined
   }
 
   removeLast = () => {
     let node = this.head
 
-    if (!node) return null
+    if (!node) return undefined
 
     if (node && !node.next) {
-      this.head = null
+      this.head = undefined
       return node.value
     }
 
@@ -127,7 +122,7 @@ export default class LinkedList {
     }
 
     const value = node.next.value
-    node.next = null
+    node.next = undefined
     return value
   }
 
@@ -144,7 +139,7 @@ export default class LinkedList {
 
   reverse = () => {
     let node = this.head
-    let before = null
+    let before
 
     while (node) {
       const next = node.next
