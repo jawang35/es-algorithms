@@ -1,6 +1,6 @@
 export default class Stack {
-  constructor() {
-    this.array = []
+  constructor(...values) {
+    this.array = values
   }
 
   isEmpty = () => !this.array.length

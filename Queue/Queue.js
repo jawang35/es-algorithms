@@ -1,6 +1,6 @@
 export default class Queue {
-  constructor() {
-    this.array = []
+  constructor(...values) {
+    this.array = values
   }
 
   enqueue = value => {

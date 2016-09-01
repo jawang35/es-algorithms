@@ -3,60 +3,62 @@ import deepFreeze from 'deep-freeze'
 import LinkedList from './LinkedList'
 
 describe('LinkedList', () => {
-  const threeNodeList = () => ({
-    value: 'First Node',
-    next: {
-      value: 'Second Node',
-      next: {
-        value: 'Third Node'
-      }
-    }
-  })
+  const createThreeNodeList = () => new LinkedList('First Node', 'Second Node', 'Third Node')
   const indexOutOfRange = 'Index out of range'
 
-  it('can display list as string', () => {
-    const linkedList = new LinkedList()
-    expect(linkedList.toString()).to.equal('[]')
+  it('initializes with constructor arguments', () => {
+    expect(new LinkedList().head).to.be.undefined()
+    expect(createThreeNodeList().head).to.deep.equal({
+      value: 'First Node',
+      next: {
+        value: 'Second Node',
+        next: {
+          value: 'Third Node'
+        }
+      }
+    })
+  })
 
-    linkedList.head = threeNodeList()
-    expect(linkedList.toString()).to.equal('[First Node, Second Node, Third Node]')
+  it('can display list as string', () => {
+    const emptyList = new LinkedList()
+    expect(emptyList.toString()).to.equal('[]')
+
+    const threeNodeList = createThreeNodeList()
+    expect(threeNodeList.toString()).to.equal('[First Node, Second Node, Third Node]')
   })
 
   it('can retrieve a node at any nonnegative index', () => {
-    const linkedList = new LinkedList()
-    expect(linkedList.nodeAtIndex.bind(linkedList, 0)).to.throw(indexOutOfRange)
-    expect(linkedList.nodeAtIndex.bind(linkedList, -1)).to.throw(indexOutOfRange)
+    const emptyList = new LinkedList()
+    expect(emptyList.nodeAtIndex.bind(emptyList, 0)).to.throw(indexOutOfRange)
+    expect(emptyList.nodeAtIndex.bind(emptyList, -1)).to.throw(indexOutOfRange)
 
-    linkedList.head = threeNodeList()
-
-    expect(linkedList.nodeAtIndex(0)).to.equal(linkedList.head)
-    expect(linkedList.nodeAtIndex(1)).to.equal(linkedList.head.next)
-    expect(linkedList.nodeAtIndex(2)).to.equal(linkedList.head.next.next)
-    expect(linkedList.nodeAtIndex.bind(linkedList, 3)).to.throw(indexOutOfRange)
+    const threeNodeList = createThreeNodeList()
+    expect(threeNodeList.nodeAtIndex(0)).to.equal(threeNodeList.head)
+    expect(threeNodeList.nodeAtIndex(1)).to.equal(threeNodeList.head.next)
+    expect(threeNodeList.nodeAtIndex(2)).to.equal(threeNodeList.head.next.next)
+    expect(threeNodeList.nodeAtIndex.bind(threeNodeList, 3)).to.throw(indexOutOfRange)
   })
 
   it('can retrieve nodes before and at a nonnegative index', () => {
-    const linkedList = new LinkedList()
-    linkedList.head = threeNodeList()
-
-    expect(linkedList.nodesBeforeAndAt(0)).to.deep.equal({
+    const threeNodeList = createThreeNodeList()
+    expect(threeNodeList.nodesBeforeAndAt(0)).to.deep.equal({
       before: undefined,
-      node: linkedList.head
+      node: threeNodeList.head
     })
-    expect(linkedList.nodesBeforeAndAt(1)).to.deep.equal({
-      before: linkedList.head,
-      node: linkedList.head.next
+    expect(threeNodeList.nodesBeforeAndAt(1)).to.deep.equal({
+      before: threeNodeList.head,
+      node: threeNodeList.head.next
     })
-    expect(linkedList.nodesBeforeAndAt(2)).to.deep.equal({
-      before: linkedList.head.next,
-      node: linkedList.head.next.next
+    expect(threeNodeList.nodesBeforeAndAt(2)).to.deep.equal({
+      before: threeNodeList.head.next,
+      node: threeNodeList.head.next.next
     })
-    expect(linkedList.nodesBeforeAndAt(3)).to.deep.equal({
-      before: linkedList.head.next.next,
+    expect(threeNodeList.nodesBeforeAndAt(3)).to.deep.equal({
+      before: threeNodeList.head.next.next,
       node: undefined
     })
-    expect(linkedList.nodesBeforeAndAt.bind(linkedList, -1)).to.throw(indexOutOfRange)
-    expect(linkedList.nodesBeforeAndAt.bind(linkedList, 4)).to.throw(indexOutOfRange)
+    expect(threeNodeList.nodesBeforeAndAt.bind(threeNodeList, -1)).to.throw(indexOutOfRange)
+    expect(threeNodeList.nodesBeforeAndAt.bind(threeNodeList, 4)).to.throw(indexOutOfRange)
   })
 
   it('can insert a value at any nonnegative index', () => {
@@ -148,18 +150,16 @@ describe('LinkedList', () => {
   })
 
   it('can remove all nodes', () => {
-    const linkedList = new LinkedList()
-    linkedList.head = threeNodeList()
-    expect(linkedList.removeAll()).to.be.undefined()
-    expect(linkedList.head).to.be.undefined()
+    const threeNodeList = createThreeNodeList()
+    expect(threeNodeList.removeAll()).to.be.undefined()
+    expect(threeNodeList.head).to.be.undefined()
   })
 
   it('can remove last node', () => {
-    const linkedList = new LinkedList()
-    linkedList.head = threeNodeList()
+    const threeNodeList = createThreeNodeList()
 
-    expect(linkedList.removeLast()).to.equal('Third Node')
-    expect(linkedList.head).to.deep.equal({
+    expect(threeNodeList.removeLast()).to.equal('Third Node')
+    expect(threeNodeList.head).to.deep.equal({
       value: 'First Node',
       next: {
         value: 'Second Node',
@@ -167,109 +167,105 @@ describe('LinkedList', () => {
       }
     })
 
-    expect(linkedList.removeLast()).to.equal('Second Node')
-    expect(linkedList.head).to.deep.equal({
+    expect(threeNodeList.removeLast()).to.equal('Second Node')
+    expect(threeNodeList.head).to.deep.equal({
       value: 'First Node',
       next: undefined
     })
 
-    expect(linkedList.removeLast()).to.equal('First Node')
-    expect(linkedList.head).to.be.undefined()
+    expect(threeNodeList.removeLast()).to.equal('First Node')
+    expect(threeNodeList.head).to.be.undefined()
 
-    expect(linkedList.removeLast()).to.be.undefined()
-    expect(linkedList.head).to.be.undefined()
+    expect(threeNodeList.removeLast()).to.be.undefined()
+    expect(threeNodeList.head).to.be.undefined()
   })
 
   it('can remove nodes at a nonnegative index', () => {
-    const linkedList = new LinkedList()
-    linkedList.head = threeNodeList()
+    const threeNodeList = createThreeNodeList()
 
-    expect(linkedList.remove.bind(linkedList, -1)).to.throw(indexOutOfRange)
-    expect(linkedList.remove.bind(linkedList, 3)).to.throw(indexOutOfRange)
+    expect(threeNodeList.remove.bind(threeNodeList, -1)).to.throw(indexOutOfRange)
+    expect(threeNodeList.remove.bind(threeNodeList, 3)).to.throw(indexOutOfRange)
 
-    expect(linkedList.remove(1)).to.equal('Second Node')
-    expect(linkedList.head.value).to.equal('First Node')
-    expect(linkedList.head.next.value).to.equal('Third Node')
-    expect(linkedList.head.next.next).to.be.undefined()
+    expect(threeNodeList.remove(1)).to.equal('Second Node')
+    expect(threeNodeList.head.value).to.equal('First Node')
+    expect(threeNodeList.head.next.value).to.equal('Third Node')
+    expect(threeNodeList.head.next.next).to.be.undefined()
 
-    expect(linkedList.remove(1)).to.equal('Third Node')
-    expect(linkedList.head.value).to.equal('First Node')
-    expect(linkedList.head.next).to.be.undefined()
+    expect(threeNodeList.remove(1)).to.equal('Third Node')
+    expect(threeNodeList.head.value).to.equal('First Node')
+    expect(threeNodeList.head.next).to.be.undefined()
 
-    expect(linkedList.remove(0)).to.equal('First Node')
-    expect(linkedList.head).to.be.undefined()
+    expect(threeNodeList.remove(0)).to.equal('First Node')
+    expect(threeNodeList.head).to.be.undefined()
   })
 
   it('removes the head node by default', () => {
-    const linkedList = new LinkedList()
-    linkedList.head = threeNodeList()
+    const threeNodeList = createThreeNodeList()
 
-    expect(linkedList.remove()).to.equal('First Node')
-    expect(linkedList.head.value).to.equal('Second Node')
-    expect(linkedList.head.next.value).to.equal('Third Node')
-    expect(linkedList.head.next.next).to.be.undefined()
+    expect(threeNodeList.remove()).to.equal('First Node')
+    expect(threeNodeList.head.value).to.equal('Second Node')
+    expect(threeNodeList.head.next.value).to.equal('Third Node')
+    expect(threeNodeList.head.next.next).to.be.undefined()
 
-    expect(linkedList.remove()).to.equal('Second Node')
-    expect(linkedList.head.value).to.equal('Third Node')
-    expect(linkedList.head.next).to.be.undefined()
+    expect(threeNodeList.remove()).to.equal('Second Node')
+    expect(threeNodeList.head.value).to.equal('Third Node')
+    expect(threeNodeList.head.next).to.be.undefined()
 
-    expect(linkedList.remove()).to.equal('Third Node')
-    expect(linkedList.head).to.be.undefined()
+    expect(threeNodeList.remove()).to.equal('Third Node')
+    expect(threeNodeList.head).to.be.undefined()
   })
 
   it('can reverse its nodes', () => {
-    const linkedList = new LinkedList()
+    const emptyList = new LinkedList()
 
-    linkedList.reverse()
-    expect(linkedList.head).to.be.undefined()
+    emptyList.reverse()
+    expect(emptyList.head).to.be.undefined()
 
-    linkedList.head = threeNodeList()
-    expect(linkedList.reverse()).to.be.undefined()
-    expect(linkedList.head.value).to.equal('Third Node')
-    expect(linkedList.head.next.value).to.equal('Second Node')
-    expect(linkedList.head.next.next.value).to.equal('First Node')
+    const threeNodeList = createThreeNodeList()
+    expect(threeNodeList.reverse()).to.be.undefined()
+    expect(threeNodeList.head.value).to.equal('Third Node')
+    expect(threeNodeList.head.next.value).to.equal('Second Node')
+    expect(threeNodeList.head.next.next.value).to.equal('First Node')
 
-    expect(linkedList.reverse()).to.be.undefined()
-    expect(linkedList.head.value).to.equal('First Node')
-    expect(linkedList.head.next.value).to.equal('Second Node')
-    expect(linkedList.head.next.next.value).to.equal('Third Node')
+    expect(threeNodeList.reverse()).to.be.undefined()
+    expect(threeNodeList.head.value).to.equal('First Node')
+    expect(threeNodeList.head.next.value).to.equal('Second Node')
+    expect(threeNodeList.head.next.next.value).to.equal('Third Node')
   })
 
   it('can map node values without mutating original list', () => {
-    const linkedList = new LinkedList()
+    const emptyList = new LinkedList()
 
-    const mappedLinkedList1 = linkedList.map(() => true)
+    const mappedLinkedList1 = emptyList.map(() => true)
     expect(mappedLinkedList1.head).to.be.undefined()
 
-    linkedList.head = threeNodeList()
-    deepFreeze(linkedList)
+    const threeNodeList = deepFreeze(createThreeNodeList())
 
-    const mappedLinkedList2 = linkedList.map(value => value.toUpperCase())
+    const mappedLinkedList2 = threeNodeList.map(value => value.toUpperCase())
     expect(mappedLinkedList2.head.value).to.equal('FIRST NODE')
     expect(mappedLinkedList2.head.next.value).to.equal('SECOND NODE')
     expect(mappedLinkedList2.head.next.next.value).to.equal('THIRD NODE')
 
-    const mappedLinkedList3 = linkedList.map(value => value.length)
+    const mappedLinkedList3 = threeNodeList.map(value => value.length)
     expect(mappedLinkedList3.head.value).to.equal(10)
     expect(mappedLinkedList3.head.next.value).to.equal(11)
     expect(mappedLinkedList3.head.next.next.value).to.equal(10)
   })
 
   it('can filter node values without mutating original list', () => {
-    const linkedList = new LinkedList()
+    const emptyList = new LinkedList()
 
-    const filteredLinkedList1 = linkedList.filter(() => true)
+    const filteredLinkedList1 = emptyList.filter(() => true)
     expect(filteredLinkedList1.head).to.be.undefined()
 
-    linkedList.head = threeNodeList()
-    deepFreeze(linkedList)
+    const threeNodeList = deepFreeze(createThreeNodeList())
 
-    const filteredLinkedList2 = linkedList.filter(value => value.indexOf('i') > -1)
+    const filteredLinkedList2 = threeNodeList.filter(value => value.indexOf('i') > -1)
     expect(filteredLinkedList2.head.value).to.equal('First Node')
     expect(filteredLinkedList2.head.next.value).to.equal('Third Node')
     expect(filteredLinkedList2.head.next.next).to.be.undefined()
 
-    const filteredLinkedList3 = linkedList.filter(() => true)
-    expect(filteredLinkedList3.head).to.deep.equal(linkedList.head)
+    const filteredLinkedList3 = threeNodeList.filter(() => true)
+    expect(filteredLinkedList3.head).to.deep.equal(threeNodeList.head)
   })
 })

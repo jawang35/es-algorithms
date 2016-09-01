@@ -7,6 +7,16 @@ class Node {
 const indexOutOfRange = 'Index out of range'
 
 export default class LinkedList {
+  constructor(...values) {
+    this.head = values[0] && new Node(values[0])
+    let node = this.head
+
+    for (let i = 1; i < values.length; i++) {
+      node.next = new Node(values[i])
+      node = node.next
+    }
+  }
+
   toString = () => {
     let node = this.head
     let string = '['

@@ -2,6 +2,15 @@ import { expect } from 'chai'
 import Stack from './Stack'
 
 describe('Stack', () => {
+  it('initializes with constructor arguments', () => {
+    expect(new Stack().array).to.deep.equal([])
+    expect(new Stack('First Item', 'Second Item', 'Third Item').array).to.deep.equal([
+      'First Item',
+      'Second Item',
+      'Third Item'
+    ])
+  })
+
   it('can check if empty', () => {
     const stack = new Stack()
     expect(stack.isEmpty()).to.be.true()
@@ -36,10 +45,7 @@ describe('Stack', () => {
   })
 
   it('can pop item off top', () => {
-    const stack = new Stack()
-    stack.push('First Item')
-    stack.push('Second Item')
-    stack.push('Third Item')
+    const stack = new Stack('First Item', 'Second Item', 'Third Item')
     expect(stack.array).to.deep.equal(['First Item', 'Second Item', 'Third Item'])
 
     expect(stack.pop()).to.equal('Third Item')

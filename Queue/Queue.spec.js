@@ -2,6 +2,15 @@ import { expect } from 'chai'
 import Queue from './Queue'
 
 describe('Queue', () => {
+  it('initializes with constructor arguments', () => {
+    expect(new Queue().array).to.deep.equal([])
+    expect(new Queue('First Value', 'Second Value', 'Third Value').array).to.deep.equal([
+      'First Value',
+      'Second Value',
+      'Third Value'
+    ])
+  })
+
   it('can enqueue values to the end of the queue', () => {
     const queue = new Queue()
     expect(queue.enqueue('First Value')).to.be.undefined()
@@ -15,8 +24,7 @@ describe('Queue', () => {
   })
 
   it('can dequeue values from the beginning of the queue', () => {
-    const queue = new Queue()
-    queue.array = ['First Value', 'Second Value', 'Third Value']
+    const queue = new Queue('First Value', 'Second Value', 'Third Value')
 
     expect(queue.dequeue()).to.equal('First Value')
     expect(queue.array).to.deep.equal(['Second Value', 'Third Value'])
@@ -40,10 +48,10 @@ describe('Queue', () => {
   })
 
   it('can peek at the first value of the queue', () => {
-    const queue = new Queue()
-    expect(queue.peek()).to.be.undefined()
+    const emptyQueue = new Queue()
+    expect(emptyQueue.peek()).to.be.undefined()
 
-    queue.array = ['First Value', 'Second Value', 'Third Value']
+    const queue = new Queue('First Value', 'Second Value', 'Third Value')
     expect(queue.peek()).to.equal('First Value')
   })
 })
