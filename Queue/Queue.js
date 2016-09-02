@@ -1,10 +1,10 @@
 export default class Queue {
-  constructor(...values) {
-    this.array = values
+  constructor(...items) {
+    this.array = items
   }
 
-  enqueue = value => {
-    this.array.push(value)
+  enqueue = item => {
+    this.array.push(item)
   }
 
   dequeue = () => this.array.shift()

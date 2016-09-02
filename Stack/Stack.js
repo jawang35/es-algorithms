@@ -1,14 +1,14 @@
 export default class Stack {
-  constructor(...values) {
-    this.array = values
+  constructor(...items) {
+    this.array = items
   }
 
   isEmpty = () => !this.array.length
 
   count = () => this.array.length
 
-  push = value => {
-    this.array.push(value)
+  push = item => {
+    this.array.push(item)
   }
 
   pop = () => this.array.pop()

@@ -4,35 +4,35 @@ import Queue from './Queue'
 describe('Queue', () => {
   it('initializes with constructor arguments', () => {
     expect(new Queue().array).to.deep.equal([])
-    expect(new Queue('First Value', 'Second Value', 'Third Value').array).to.deep.equal([
-      'First Value',
-      'Second Value',
-      'Third Value'
+    expect(new Queue('First Item', 'Second Item', 'Third Item').array).to.deep.equal([
+      'First Item',
+      'Second Item',
+      'Third Item'
     ])
   })
 
   it('can enqueue values to the end of the queue', () => {
     const queue = new Queue()
-    expect(queue.enqueue('First Value')).to.be.undefined()
-    expect(queue.array).to.deep.equal(['First Value'])
+    expect(queue.enqueue('First Item')).to.be.undefined()
+    expect(queue.array).to.deep.equal(['First Item'])
 
-    expect(queue.enqueue('Second Value')).to.be.undefined()
-    expect(queue.array).to.deep.equal(['First Value', 'Second Value'])
+    expect(queue.enqueue('Second Item')).to.be.undefined()
+    expect(queue.array).to.deep.equal(['First Item', 'Second Item'])
 
-    expect(queue.enqueue('Third Value')).to.be.undefined()
-    expect(queue.array).to.deep.equal(['First Value', 'Second Value', 'Third Value'])
+    expect(queue.enqueue('Third Item')).to.be.undefined()
+    expect(queue.array).to.deep.equal(['First Item', 'Second Item', 'Third Item'])
   })
 
   it('can dequeue values from the beginning of the queue', () => {
-    const queue = new Queue('First Value', 'Second Value', 'Third Value')
+    const queue = new Queue('First Item', 'Second Item', 'Third Item')
 
-    expect(queue.dequeue()).to.equal('First Value')
-    expect(queue.array).to.deep.equal(['Second Value', 'Third Value'])
+    expect(queue.dequeue()).to.equal('First Item')
+    expect(queue.array).to.deep.equal(['Second Item', 'Third Item'])
 
-    expect(queue.dequeue()).to.equal('Second Value')
-    expect(queue.array).to.deep.equal(['Third Value'])
+    expect(queue.dequeue()).to.equal('Second Item')
+    expect(queue.array).to.deep.equal(['Third Item'])
 
-    expect(queue.dequeue()).to.equal('Third Value')
+    expect(queue.dequeue()).to.equal('Third Item')
     expect(queue.array).to.deep.equal([])
 
     expect(queue.dequeue()).to.be.undefined()
@@ -43,7 +43,7 @@ describe('Queue', () => {
     const queue = new Queue()
     expect(queue.isEmpty()).to.be.true()
 
-    queue.enqueue('Some Value')
+    queue.enqueue('Some Item')
     expect(queue.isEmpty()).to.be.false()
   })
 
@@ -51,7 +51,7 @@ describe('Queue', () => {
     const emptyQueue = new Queue()
     expect(emptyQueue.peek()).to.be.undefined()
 
-    const queue = new Queue('First Value', 'Second Value', 'Third Value')
-    expect(queue.peek()).to.equal('First Value')
+    const queue = new Queue('First Item', 'Second Item', 'Third Item')
+    expect(queue.peek()).to.equal('First Item')
   })
 })
