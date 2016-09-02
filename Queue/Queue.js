@@ -9,6 +9,8 @@ export default class Queue {
 
   dequeue = () => this.array.shift()
 
+  count = () => this.array.length
+
   isEmpty = () => !this.array.length
 
   peek = () => this.array[0]

@@ -39,6 +39,14 @@ describe('Queue', () => {
     expect(queue.array).to.deep.equal([])
   })
 
+  it('can count items in queue', () => {
+    const emptyQueue = new Queue()
+    expect(emptyQueue.count()).to.equal(0)
+
+    const queue = new Queue('First Item', 'Second Item', 'Third Item')
+    expect(queue.count()).to.equal(3)
+  })
+
   it('can check if queue is empty', () => {
     const queue = new Queue()
     expect(queue.isEmpty()).to.be.true()
