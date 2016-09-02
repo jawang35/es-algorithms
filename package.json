@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Data structures and algorithms in modern ES/JavaScript",
   "scripts": {
-    "test": "./node_modules/.bin/mocha \"./{,!(node_modules)/**/}*.spec.js\" --require babel-register",
+    "test": "npm run lint && ./node_modules/.bin/mocha \"./{,!(node_modules)/**/}*.spec.js\" --require babel-register",
     "lint": "./node_modules/.bin/eslint ./ && echo \"eslint: no lint errors\""
   },
   "repository": {
