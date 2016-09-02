@@ -11,7 +11,7 @@ describe('Queue', () => {
     ])
   })
 
-  it('can enqueue values to the end of the queue', () => {
+  it('can enqueue items to the end of the queue', () => {
     const queue = new Queue()
     expect(queue.enqueue('First Item')).to.be.undefined()
     expect(queue.array).to.deep.equal(['First Item'])
@@ -23,7 +23,7 @@ describe('Queue', () => {
     expect(queue.array).to.deep.equal(['First Item', 'Second Item', 'Third Item'])
   })
 
-  it('can dequeue values from the beginning of the queue', () => {
+  it('can dequeue items from the beginning of the queue', () => {
     const queue = new Queue('First Item', 'Second Item', 'Third Item')
 
     expect(queue.dequeue()).to.equal('First Item')
@@ -55,7 +55,7 @@ describe('Queue', () => {
     expect(queue.isEmpty()).to.be.false()
   })
 
-  it('can peek at the first value of the queue', () => {
+  it('can peek at the first item of the queue', () => {
     const emptyQueue = new Queue()
     expect(emptyQueue.peek()).to.be.undefined()
 
