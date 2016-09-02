@@ -25,7 +25,7 @@ for (const sortType of sorts.keys()) {
     })
 
     it('can sort by a user defined compare function', () => {
-      const items = [['First', 5], ['Second', 2], ['Third', -1], ['Fourth', 3]]
+      const items = deepFreeze([['First', 5], ['Second', 2], ['Third', -1], ['Fourth', 3]])
       const compare = (item1, item2) => item1[1] - item2[1]
       expect(sort(items, compare)).to.deep.equal([
         ['Third', -1],
