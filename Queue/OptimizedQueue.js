@@ -12,7 +12,6 @@ export default class OptimizedQueue {
     if (this.head >= this.array.length) return undefined
 
     const item = this.array[this.head]
-
     this.array[this.head] = undefined
     this.head += 1
 
