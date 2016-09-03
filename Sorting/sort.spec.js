@@ -1,9 +1,11 @@
 import { expect } from 'chai'
 import deepFreeze from 'deep-freeze'
 import insertionSort from './insertionSort'
+import selectionSort from './selectionSort'
 
 const sorts = new Map([
-  ['insertionSort', insertionSort]
+  ['insertionSort', insertionSort],
+  ['selectionSort', selectionSort]
 ])
 
 for (const sortType of sorts.keys()) {

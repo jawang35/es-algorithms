@@ -1,7 +1,4 @@
-const defaultCompare = (item1, item2) => {
-  if (item1 <= item2) return -1
-  return 1
-}
+import defaultCompare from './helpers/defaultCompare'
 
 export default (items, compare = defaultCompare) => {
   const sortedItems = new Array(items.length)
