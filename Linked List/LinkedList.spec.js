@@ -162,15 +162,13 @@ describe('LinkedList', () => {
     expect(threeNodeList.head).to.deep.equal({
       value: 'First Node',
       next: {
-        value: 'Second Node',
-        next: undefined
+        value: 'Second Node'
       }
     })
 
     expect(threeNodeList.removeLast()).to.equal('Second Node')
     expect(threeNodeList.head).to.deep.equal({
-      value: 'First Node',
-      next: undefined
+      value: 'First Node'
     })
 
     expect(threeNodeList.removeLast()).to.equal('First Node')

@@ -114,7 +114,7 @@ export default class LinkedList {
   }
 
   removeAll() {
-    this.head = undefined
+    delete this.head
   }
 
   removeLast() {
@@ -123,7 +123,7 @@ export default class LinkedList {
     if (!node) return undefined
 
     if (node && !node.next) {
-      this.head = undefined
+      delete this.head
       return node.value
     }
 
@@ -132,7 +132,7 @@ export default class LinkedList {
     }
 
     const value = node.next.value
-    node.next = undefined
+    delete node.next
     return value
   }
 
