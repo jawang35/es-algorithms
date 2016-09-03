@@ -3,15 +3,23 @@ export default class Stack {
     this.array = items
   }
 
-  isEmpty = () => !this.array.length
+  isEmpty() {
+    return !this.array.length
+  }
 
-  count = () => this.array.length
+  count() {
+    return this.array.length
+  }
 
-  push = item => {
+  push(item) {
     this.array.push(item)
   }
 
-  pop = () => this.array.pop()
+  pop() {
+    return this.array.pop()
+  }
 
-  peek = () => this.array[this.array.length - 1]
+  peek() {
+    return this.array[this.array.length - 1]
+  }
 }

@@ -3,15 +3,23 @@ export default class Queue {
     this.array = items
   }
 
-  enqueue = item => {
+  enqueue(item) {
     this.array.push(item)
   }
 
-  dequeue = () => this.array.shift()
+  dequeue() {
+    return this.array.shift()
+  }
 
-  count = () => this.array.length
+  count() {
+    return this.array.length
+  }
 
-  isEmpty = () => !this.array.length
+  isEmpty() {
+    return !this.array.length
+  }
 
-  peek = () => this.array[0]
+  peek() {
+    return this.array[0]
+  }
 }

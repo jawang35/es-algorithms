@@ -17,7 +17,7 @@ export default class LinkedList {
     }
   }
 
-  toString = () => {
+  toString() {
     let node = this.head
     let string = '['
 
@@ -30,7 +30,7 @@ export default class LinkedList {
     return `${string}]`
   }
 
-  nodeAtIndex = index => {
+  nodeAtIndex(index) {
     if (index < 0) throw new Error(indexOutOfRange)
 
     let node = this.head
@@ -46,7 +46,7 @@ export default class LinkedList {
     return node
   }
 
-  nodesBeforeAndAt = index => {
+  nodesBeforeAndAt(index) {
     if (index < 0) throw new Error(indexOutOfRange)
 
     let before
@@ -67,7 +67,7 @@ export default class LinkedList {
     }
   }
 
-  insert = (value, index = 0) => {
+  insert(value, index = 0) {
     const { before, node } = this.nodesBeforeAndAt(index)
 
     const newNode = new Node(value)
@@ -78,7 +78,7 @@ export default class LinkedList {
     newNode.next = node
   }
 
-  append = value => {
+  append(value) {
     const newNode = new Node(value)
     const last = this.last()
 
@@ -89,7 +89,7 @@ export default class LinkedList {
     }
   }
 
-  last = () => {
+  last() {
     let node = this.head
 
     if (!node) return undefined
@@ -101,7 +101,7 @@ export default class LinkedList {
     return node
   }
 
-  count = () => {
+  count() {
     let number = 0
     let node = this.head
 
@@ -113,11 +113,11 @@ export default class LinkedList {
     return number
   }
 
-  removeAll = () => {
+  removeAll() {
     this.head = undefined
   }
 
-  removeLast = () => {
+  removeLast() {
     let node = this.head
 
     if (!node) return undefined
@@ -136,7 +136,7 @@ export default class LinkedList {
     return value
   }
 
-  remove = (index = 0) => {
+  remove(index = 0) {
     const { before, node } = this.nodesBeforeAndAt(index)
 
     if (!node) throw new Error(indexOutOfRange)
@@ -147,7 +147,7 @@ export default class LinkedList {
     return node.value
   }
 
-  reverse = () => {
+  reverse() {
     let node = this.head
     let before
 
@@ -160,7 +160,7 @@ export default class LinkedList {
     }
   }
 
-  map = transform => {
+  map(transform) {
     const newList = new LinkedList()
     let node = this.head
 
@@ -172,7 +172,7 @@ export default class LinkedList {
     return newList
   }
 
-  filter = predicate => {
+  filter(predicate) {
     const newList = new LinkedList()
     let node = this.head
 
