@@ -7,7 +7,7 @@ export default (items, compare = defaultCompare) => {
     let smallestItemPosition = i
 
     for (let j = i + 1; j < sortedItems.length; j++) {
-      if (compare(sortedItems[j], sortedItems[smallestItemPosition]) <= 0) {
+      if (compare(sortedItems[j], sortedItems[smallestItemPosition]) < 0) {
         smallestItemPosition = j
       }
     }

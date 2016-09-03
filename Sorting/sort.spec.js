@@ -1,9 +1,11 @@
 import { expect } from 'chai'
 import deepFreeze from 'deep-freeze'
+import bubbleSort from './bubbleSort'
 import insertionSort from './insertionSort'
 import selectionSort from './selectionSort'
 
 const sorts = new Map([
+  ['bubbleSort', bubbleSort],
   ['insertionSort', insertionSort],
   ['selectionSort', selectionSort]
 ])
