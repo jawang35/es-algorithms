@@ -261,7 +261,7 @@ describe('BinarySearchTree', () => {
       { key: 4 },
       { key: 6 }
     ])
-    expect(bst.height()).to.equal(3)
+    expect(bst.height()).to.equal(2)
     expect(new BinarySearchTree().height()).to.equal(0)
   })
 

@@ -73,7 +73,7 @@ export default class BinarySearchTree {
   }
 
   height() {
-    if (this.key === undefined || this.key === null) return 0
+    if (this.isLeaf()) return 0
 
     const leftHeight = this.left ? this.left.height() : 0
     const rightHeight = this.right ? this.right.height() : 0
