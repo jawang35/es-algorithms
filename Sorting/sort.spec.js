@@ -3,12 +3,14 @@ import deepFreeze from 'deep-freeze'
 import bubbleSort from './bubbleSort'
 import insertionSort from './insertionSort'
 import mergeSort from './mergeSort'
+import quickSort from './quickSort'
 import selectionSort from './selectionSort'
 
 const sorts = new Map([
   ['bubbleSort', bubbleSort],
   ['insertionSort', insertionSort],
   ['mergeSort', mergeSort],
+  ['quickSort', quickSort],
   ['selectionSort', selectionSort]
 ])
 
