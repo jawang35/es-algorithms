@@ -7,7 +7,7 @@ describe('Queue', () => {
     expect(new Queue('First Item', 'Second Item', 'Third Item').array).to.deep.equal([
       'First Item',
       'Second Item',
-      'Third Item'
+      'Third Item',
     ])
   })
 

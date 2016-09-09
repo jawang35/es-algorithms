@@ -13,9 +13,9 @@ describe('LinkedList', () => {
       next: {
         value: 'Second Node',
         next: {
-          value: 'Third Node'
-        }
-      }
+          value: 'Third Node',
+        },
+      },
     })
   })
 
@@ -43,19 +43,19 @@ describe('LinkedList', () => {
     const threeNodeList = createThreeNodeList()
     expect(threeNodeList.nodesBeforeAndAt(0)).to.deep.equal({
       before: undefined,
-      node: threeNodeList.head
+      node: threeNodeList.head,
     })
     expect(threeNodeList.nodesBeforeAndAt(1)).to.deep.equal({
       before: threeNodeList.head,
-      node: threeNodeList.head.next
+      node: threeNodeList.head.next,
     })
     expect(threeNodeList.nodesBeforeAndAt(2)).to.deep.equal({
       before: threeNodeList.head.next,
-      node: threeNodeList.head.next.next
+      node: threeNodeList.head.next.next,
     })
     expect(threeNodeList.nodesBeforeAndAt(3)).to.deep.equal({
       before: threeNodeList.head.next.next,
-      node: undefined
+      node: undefined,
     })
     expect(threeNodeList.nodesBeforeAndAt.bind(threeNodeList, -1)).to.throw(indexOutOfRange)
     expect(threeNodeList.nodesBeforeAndAt.bind(threeNodeList, 4)).to.throw(indexOutOfRange)
@@ -162,13 +162,13 @@ describe('LinkedList', () => {
     expect(threeNodeList.head).to.deep.equal({
       value: 'First Node',
       next: {
-        value: 'Second Node'
-      }
+        value: 'Second Node',
+      },
     })
 
     expect(threeNodeList.removeLast()).to.equal('Second Node')
     expect(threeNodeList.head).to.deep.equal({
-      value: 'First Node'
+      value: 'First Node',
     })
 
     expect(threeNodeList.removeLast()).to.equal('First Node')

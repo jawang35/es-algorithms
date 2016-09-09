@@ -11,7 +11,7 @@ describe('OptimizedQueue', () => {
     expect(queue.array).to.deep.equal([
       'First Item',
       'Second Item',
-      'Third Item'
+      'Third Item',
     ])
     expect(queue.head).to.equal(0)
   })

@@ -11,7 +11,7 @@ const sorts = new Map([
   ['insertionSort', insertionSort],
   ['mergeSort', mergeSort],
   ['quickSort', quickSort],
-  ['selectionSort', selectionSort]
+  ['selectionSort', selectionSort],
 ])
 
 for (const sortType of sorts.keys()) {
@@ -38,7 +38,7 @@ for (const sortType of sorts.keys()) {
         ['Second', 2],
         ['Third', -1],
         ['Fourth', 3],
-        ['Fifth', 2]
+        ['Fifth', 2],
       ])
       const compare = (item1, item2) => item1[1] - item2[1]
       expect(sort(items, compare)).to.deep.equal([
@@ -46,7 +46,7 @@ for (const sortType of sorts.keys()) {
         ['Second', 2],
         ['Fifth', 2],
         ['Fourth', 3],
-        ['First', 5]
+        ['First', 5],
       ])
     })
   })

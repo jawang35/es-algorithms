@@ -6,12 +6,12 @@ describe('BinarySearchTree', () => {
     const root = new BinarySearchTree(1, 2)
     expect(root).to.deep.equal({
       key: 1,
-      value: 2
+      value: 2,
     })
     const child = new BinarySearchTree(2, 3)
     expect(child).to.deep.equal({
       key: 2,
-      value: 3
+      value: 3,
     })
   })
 
@@ -19,7 +19,7 @@ describe('BinarySearchTree', () => {
     const bst = new BinarySearchTree()
     expect(bst).to.deep.equal({
       key: undefined,
-      value: undefined
+      value: undefined,
     })
   })
 
@@ -36,7 +36,7 @@ describe('BinarySearchTree', () => {
       { key: 2, value: 'two' },
       { key: 5, value: 'five' },
       { key: 4, value: 'four' },
-      { key: 6, value: 'six' }
+      { key: 6, value: 'six' },
     ])
     expect(bst.key).to.equal(3)
     expect(bst.value).to.equal('three')
@@ -73,7 +73,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 4 },
-      { key: 6 }
+      { key: 6 },
     ])
     expect(bst.toString()).to.equal('(2) <- 3 -> ((4) <- 5 -> (6))')
   })
@@ -91,7 +91,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 4 },
-      { key: 6 }
+      { key: 6 },
     ])
     expect(bst.isRoot()).to.be.true()
     expect(bst.left.isRoot()).to.be.false()
@@ -113,7 +113,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 4 },
-      { key: 6 }
+      { key: 6 },
     ])
     expect(bst.isLeaf()).to.be.false()
     expect(bst.left.isLeaf()).to.be.true()
@@ -135,7 +135,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 4 },
-      { key: 6 }
+      { key: 6 },
     ])
     expect(bst.isLeftChild()).to.be.false()
     expect(bst.left.isLeftChild()).to.be.true()
@@ -157,7 +157,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 1 },
-      { key: 3 }
+      { key: 3 },
     ])
     expect(bst.isRightChild()).to.be.false()
     expect(bst.left.isRightChild()).to.be.false()
@@ -178,7 +178,7 @@ describe('BinarySearchTree', () => {
       { key: 3 },
       { key: 5 },
       { key: 2 },
-      { key: 4 }
+      { key: 4 },
     ])
     expect(bst.hasLeftChild()).to.be.true()
     expect(bst.left.hasLeftChild()).to.be.false()
@@ -198,7 +198,7 @@ describe('BinarySearchTree', () => {
       { key: 4 },
       { key: 2 },
       { key: 3 },
-      { key: 5 }
+      { key: 5 },
     ])
     expect(bst.hasRightChild()).to.be.true()
     expect(bst.left.hasRightChild()).to.be.true()
@@ -219,7 +219,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 4 },
       { key: 1 },
-      { key: 5 }
+      { key: 5 },
     ])
     expect(bst.hasAnyChild()).to.be.true()
     expect(bst.left.hasAnyChild()).to.be.true()
@@ -241,7 +241,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 4 },
-      { key: 6 }
+      { key: 6 },
     ])
     expect(bst.count()).to.equal(5)
   })
@@ -259,7 +259,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 4 },
-      { key: 6 }
+      { key: 6 },
     ])
     expect(bst.height()).to.equal(2)
     expect(new BinarySearchTree().height()).to.equal(0)
@@ -278,7 +278,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 1 },
-      { key: 3 }
+      { key: 3 },
     ])
     expect(bst.minimum().key).to.equal(1)
   })
@@ -296,7 +296,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 4 },
-      { key: 6 }
+      { key: 6 },
     ])
     expect(bst.maximum().key).to.equal(6)
   })
@@ -314,7 +314,7 @@ describe('BinarySearchTree', () => {
       { key: 2 },
       { key: 5 },
       { key: 4 },
-      { key: 6 }
+      { key: 6 },
     ])
     expect(bst.insert(1, 'one')).to.be.undefined()
     expect(bst.left.left.key).to.equal(1)
@@ -348,7 +348,7 @@ describe('BinarySearchTree', () => {
       { key: 2, value: 'two' },
       { key: 5, value: 'five' },
       { key: 4, value: 'four' },
-      { key: 6, value: 'six' }
+      { key: 6, value: 'six' },
     ])
     expect(bst.remove(3)).to.equal('three')
     expect(bst.toString()).to.equal('(2) <- 4 -> (5 -> (6))')
@@ -379,7 +379,7 @@ describe('BinarySearchTree', () => {
       { key: 2, value: 'two' },
       { key: 5, value: 'five' },
       { key: 4, value: 'four' },
-      { key: 6, value: 'six' }
+      { key: 6, value: 'six' },
     ])
     expect(bst.search(3)).to.deep.equal(bst)
     expect(bst.search(2)).to.deep.equal(bst.left)
@@ -403,7 +403,7 @@ describe('BinarySearchTree', () => {
       { key: 2, value: 'two' },
       { key: 5, value: 'five' },
       { key: 4, value: 'four' },
-      { key: 6, value: 'six' }
+      { key: 6, value: 'six' },
     ])
     const traversalResult = []
     const traversalProcess = ({ key, value }) =>
@@ -414,7 +414,7 @@ describe('BinarySearchTree', () => {
       'Key: 3; Value: three',
       'Key: 4; Value: four',
       'Key: 5; Value: five',
-      'Key: 6; Value: six'
+      'Key: 6; Value: six',
     ])
   })
 })
