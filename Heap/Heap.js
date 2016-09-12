@@ -1,3 +1,5 @@
+import defaultIsOrderedBefore from './helpers/defaultIsOrderedBefore'
+
 const parentIndexOf = index => Math.floor((index - 1) / 2)
 
 const leftIndexOf = index => (2 * index) + 1
@@ -5,13 +7,25 @@ const leftIndexOf = index => (2 * index) + 1
 const rightIndexOf = index => (2 * index) + 2
 
 export default class Heap {
-  constructor(array) {
-    this.array = array ? [...array] : []
+  constructor(...args) {
+    if (Array.isArray(args[0])) {
+      this.arrayConstructor(args[0], args[1])
+    } else {
+      this.baseConstructor(...args)
+    }
+  }
 
-    if (array) {
-      for (let i = (array.length / 2) - 1; i >= 0; i--) {
-        this.shiftDown(i)
-      }
+  baseConstructor(isOrderedBefore = defaultIsOrderedBefore) {
+    this.isOrderedBefore = isOrderedBefore
+    this.array = []
+  }
+
+  arrayConstructor(array, isOrderedBefore = defaultIsOrderedBefore) {
+    this.isOrderedBefore = isOrderedBefore
+    this.array = [...array]
+
+    for (let i = Math.floor(this.array.length / 2) - 1; i >= 0; i--) {
+      this.shiftDown(i)
     }
   }
 
@@ -23,7 +37,7 @@ export default class Heap {
     let childIndex = index
     let parentIndex = parentIndexOf(childIndex)
 
-    while (childIndex > 0 && child > this.array[parentIndex]) {
+    while (childIndex > 0 && this.isOrderedBefore(child, this.array[parentIndex])) {
       this.array[childIndex] = this.array[parentIndex]
       childIndex = parentIndex
       parentIndex = parentIndexOf(childIndex)
@@ -41,8 +55,11 @@ export default class Heap {
     let leftIndex = leftIndexOf(parentIndex)
     let rightIndex = rightIndexOf(parentIndex)
 
-    while (parent < this.array[leftIndex] || parent < this.array[rightIndex]) {
-      if (this.array[leftIndex] < this.array[rightIndex]) {
+    while (
+      this.isOrderedBefore(this.array[leftIndex], parent) ||
+      this.isOrderedBefore(this.array[rightIndex], parent)
+    ) {
+      if (this.isOrderedBefore(this.array[rightIndex], this.array[leftIndex])) {
         this.array[parentIndex] = this.array[rightIndex]
         parentIndex = rightIndex
         leftIndex = leftIndexOf(parentIndex)
@@ -88,7 +105,9 @@ export default class Heap {
 
   replace(index, value) {
     if (index > this.array.length - 1) return
-    if (value < this.array[index]) throw new Error('Cannot replace with smaller value')
+    if (this.isOrderedBefore(this.array[index], value)) {
+      throw new Error('Cannot replace with lower priority value')
+    }
 
     this.array[index] = value
     this.shiftUp(index)

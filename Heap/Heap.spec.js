@@ -1,4 +1,5 @@
 import { expect } from 'chai'
+import deepFreeze from 'deep-freeze'
 import Heap from './Heap'
 
 describe('Heap', () => {
@@ -10,8 +11,30 @@ describe('Heap', () => {
         / \    /        / \  /
        1   2  10       1  2  7
      */
-    const heap = new Heap([7, 5, 16, 1, 2, 10])
+    const array = deepFreeze([7, 5, 16, 1, 2, 10])
+    const heap = new Heap(array)
     expect(heap.array).to.deep.equal([16, 5, 10, 1, 2, 7])
+  })
+
+  it('can initialize with a different priority function', () => {
+    /* Min Heap
+           1
+          / \
+         2   5
+        / \
+       10  7
+     */
+    const heap = new Heap([10, 7, 5, 2, 1], (value1, value2) => value1 < value2)
+    expect(heap.array).to.deep.equal([1, 2, 5, 10, 7])
+
+    expect(heap.insert(3)).to.be.undefined()
+    expect(heap.array).to.deep.equal([1, 2, 3, 10, 7, 5])
+
+    expect(heap.remove()).to.equal(1)
+    expect(heap.array).to.deep.equal([2, 5, 3, 10, 7])
+
+    expect(heap.replace.bind(heap, 3, 11)).to.throw('Cannot replace with lower priority value')
+    expect(heap.array).to.deep.equal([2, 5, 3, 10, 7])
   })
 
   it('can shift up a node in the tree', () => {
@@ -140,7 +163,7 @@ describe('Heap', () => {
     expect(heap.array).to.deep.equal([])
   })
 
-  it('can replace a node with a larger value', () => {
+  it('can replace a node with a value with higher priority', () => {
     /*
            10
           /  \
@@ -161,7 +184,7 @@ describe('Heap', () => {
     expect(heap.replace(5, 2)).to.be.undefined()
     expect(heap.array).to.deep.equal([11, 9, 2, 7, 1])
 
-    expect(heap.replace.bind(heap, 3, 6)).to.throw('Cannot replace with smaller value')
+    expect(heap.replace.bind(heap, 3, 6)).to.throw('Cannot replace with lower priority value')
   })
 
   it('can peek at the top value of the tree', () => {
