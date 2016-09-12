@@ -1,10 +1,10 @@
-import defaultIsOrderedBefore from './helpers/defaultIsOrderedBefore'
-
 const parentIndexOf = index => Math.floor((index - 1) / 2)
 
 const leftIndexOf = index => (2 * index) + 1
 
 const rightIndexOf = index => (2 * index) + 2
+
+const defaultIsOrderedBefore = (value1, value2) => value1 > value2
 
 export default class Heap {
   constructor(...args) {
