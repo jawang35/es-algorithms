@@ -5,7 +5,7 @@ const merge = (leftItems, rightItems, compare) => {
   let leftPosition = 0
   let rightPosition = 0
 
-  for (let i = 0; i < sortedItems.length; i++) {
+  for (let i = 0; i < sortedItems.length; i += 1) {
     if (leftPosition < leftItems.length && rightPosition < rightItems.length) {
       const leftItem = leftItems[leftPosition]
       const rightItem = rightItems[rightPosition]

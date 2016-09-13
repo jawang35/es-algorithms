@@ -11,7 +11,7 @@ export default class LinkedList {
     this.head = values[0] && new Node(values[0])
     let node = this.head
 
-    for (let i = 1; i < values.length; i++) {
+    for (let i = 1; i < values.length; i += 1) {
       node.next = new Node(values[i])
       node = node.next
     }

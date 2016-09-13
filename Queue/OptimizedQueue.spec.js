@@ -56,7 +56,7 @@ describe('OptimizedQueue', () => {
     expect(queue.array.length).to.equal(51)
     expect(queue.head).to.equal(0)
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 12; i += 1) {
       expect(queue.dequeue()).to.equal('Repeating Item')
       expect(queue.array.length).to.equal(51)
       expect(queue.head).to.equal(i + 1)
@@ -66,7 +66,7 @@ describe('OptimizedQueue', () => {
     expect(queue.array.length).to.equal(38)
     expect(queue.head).to.equal(0)
 
-    for (let i = 0; i < 38; i++) {
+    for (let i = 0; i < 38; i += 1) {
       expect(queue.dequeue()).to.equal('Repeating Item')
       expect(queue.array.length).to.equal(38)
       expect(queue.head).to.equal(i + 1)

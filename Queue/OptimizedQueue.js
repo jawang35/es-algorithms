@@ -4,7 +4,7 @@ export default class OptimizedQueue {
     this.head = 0
   }
 
-  enqueue = item => {
+  enqueue = (item) => {
     this.array.push(item)
   }
 

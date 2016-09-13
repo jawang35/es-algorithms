@@ -24,7 +24,7 @@ export default class Heap {
     this.isOrderedBefore = isOrderedBefore
     this.array = [...array]
 
-    for (let i = Math.floor(this.array.length / 2) - 1; i >= 0; i--) {
+    for (let i = Math.floor(this.array.length / 2) - 1; i >= 0; i -= 1) {
       this.shiftDown(i)
     }
   }
@@ -120,7 +120,7 @@ export default class Heap {
   search(value) {
     let index
 
-    for (let i = 0; i < this.array.length; i++) {
+    for (let i = 0; i < this.array.length; i += 1) {
       if (value === this.array[i]) index = i
     }
 

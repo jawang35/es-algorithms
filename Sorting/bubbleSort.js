@@ -7,7 +7,7 @@ export default (items, compare = defaultCompare) => {
   while (!sorted) {
     sorted = true
 
-    for (let i = 0; i < sortedItems.length - 1; i++) {
+    for (let i = 0; i < sortedItems.length - 1; i += 1) {
       const currentItem = sortedItems[i]
       const nextItem = sortedItems[i + 1]
 
