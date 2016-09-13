@@ -126,4 +126,12 @@ export default class Heap {
 
     return index
   }
+
+  isEmpty() {
+    return !this.array.length
+  }
+
+  count() {
+    return this.array.length
+  }
 }

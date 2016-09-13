@@ -218,4 +218,20 @@ describe('Heap', () => {
     expect(heap.search(5)).to.equal(3)
     expect(heap.search(3)).to.be.undefined()
   })
+
+  it('knows if it is empty', () => {
+    const emptyHeap = new Heap()
+    const heap = new Heap([10, 7, 2, 5, 1])
+
+    expect(emptyHeap.isEmpty()).to.be.true()
+    expect(heap.isEmpty()).to.be.false()
+  })
+
+  it('can count nodes in the tree', () => {
+    const emptyHeap = new Heap(0)
+    const heap = new Heap([10, 7, 2, 5, 1])
+
+    expect(emptyHeap.count()).to.equal(0)
+    expect(heap.count()).to.equal(5)
+  })
 })
