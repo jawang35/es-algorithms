@@ -47,6 +47,13 @@ export default class Heap {
   }
 
   shiftDown(index) {
+    const isOrderedBefore = (value1, value2) => {
+      if (value1 === undefined || value2 === undefined) {
+        return false
+      }
+      return this.isOrderedBefore(value1, value2)
+    }
+
     const parent = this.array[index]
 
     if (parent === undefined) return
@@ -56,10 +63,10 @@ export default class Heap {
     let rightIndex = rightIndexOf(parentIndex)
 
     while (
-      this.isOrderedBefore(this.array[leftIndex], parent) ||
-      this.isOrderedBefore(this.array[rightIndex], parent)
+      isOrderedBefore(this.array[leftIndex], parent) ||
+      isOrderedBefore(this.array[rightIndex], parent)
     ) {
-      if (this.isOrderedBefore(this.array[rightIndex], this.array[leftIndex])) {
+      if (isOrderedBefore(this.array[rightIndex], this.array[leftIndex])) {
         this.array[parentIndex] = this.array[rightIndex]
         parentIndex = rightIndex
         leftIndex = leftIndexOf(parentIndex)

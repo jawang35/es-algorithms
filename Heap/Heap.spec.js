@@ -24,17 +24,49 @@ describe('Heap', () => {
         / \
        10  7
      */
-    const heap = new Heap([10, 7, 5, 2, 1], (value1, value2) => value1 < value2)
-    expect(heap.array).to.deep.equal([1, 2, 5, 10, 7])
+    const items = [
+      ['one', 10],
+      ['two', 7],
+      ['three', 5],
+      ['four', 2],
+      ['five', 1],
+    ]
+    const heap = new Heap(items, (value1, value2) => value1[1] < value2[1])
+    expect(heap.array).to.deep.equal([
+      ['five', 1],
+      ['four', 2],
+      ['three', 5],
+      ['one', 10],
+      ['two', 7],
+    ])
 
-    expect(heap.insert(3)).to.be.undefined()
-    expect(heap.array).to.deep.equal([1, 2, 3, 10, 7, 5])
+    expect(heap.insert(['six', 3])).to.be.undefined()
+    expect(heap.array).to.deep.equal([
+      ['five', 1],
+      ['four', 2],
+      ['six', 3],
+      ['one', 10],
+      ['two', 7],
+      ['three', 5],
+    ])
 
-    expect(heap.remove()).to.equal(1)
-    expect(heap.array).to.deep.equal([2, 5, 3, 10, 7])
+    expect(heap.remove()).to.deep.equal(['five', 1])
+    expect(heap.array).to.deep.equal([
+      ['four', 2],
+      ['three', 5],
+      ['six', 3],
+      ['one', 10],
+      ['two', 7],
+    ])
 
-    expect(heap.replace.bind(heap, 3, 11)).to.throw('Cannot replace with lower priority value')
-    expect(heap.array).to.deep.equal([2, 5, 3, 10, 7])
+    expect(heap.replace.bind(heap, 3, ['one', 11])).to.throw('Cannot replace with lower priority value')
+    expect(heap.array).to.deep.equal([
+      ['four', 2],
+      ['three', 5],
+      ['six', 3],
+      ['one', 10],
+      ['two', 7],
+    ])
   })
 
   it('can shift up a node in the tree', () => {

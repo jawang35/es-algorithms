@@ -1,6 +1,7 @@
 import { expect } from 'chai'
 import deepFreeze from 'deep-freeze'
 import bubbleSort from './bubbleSort'
+import heapSort from './heapSort'
 import insertionSort from './insertionSort'
 import mergeSort from './mergeSort'
 import quickSort from './quickSort'
@@ -8,6 +9,7 @@ import selectionSort from './selectionSort'
 
 const sorts = new Map([
   ['bubbleSort', bubbleSort],
+  ['heapSort', heapSort],
   ['insertionSort', insertionSort],
   ['mergeSort', mergeSort],
   ['quickSort', quickSort],
@@ -33,23 +35,43 @@ describe('Sorting', () => {
         expect(sort(string).join('')).to.equal(' !,HWdellloor')
       })
 
-      it('can stable sort by a user defined compare function', () => {
-        const items = deepFreeze([
-          ['First', 5],
-          ['Second', 2],
-          ['Third', -1],
-          ['Fourth', 3],
-          ['Fifth', 2],
-        ])
-        const compare = (item1, item2) => item1[1] - item2[1]
-        expect(sort(items, compare)).to.deep.equal([
-          ['Third', -1],
-          ['Second', 2],
-          ['Fifth', 2],
-          ['Fourth', 3],
-          ['First', 5],
-        ])
-      })
+      if (sort !== heapSort) {
+        it('can stable sort by a user defined compare function', () => {
+          const items = deepFreeze([
+            ['First', 5],
+            ['Second', 2],
+            ['Third', -1],
+            ['Fourth', 3],
+            ['Fifth', 2],
+          ])
+          const compare = (item1, item2) => item1[1] - item2[1]
+          expect(sort(items, compare)).to.deep.equal([
+            ['Third', -1],
+            ['Second', 2],
+            ['Fifth', 2],
+            ['Fourth', 3],
+            ['First', 5],
+          ])
+        })
+      } else {
+        it('can sort by a user defined compare function', () => {
+          const items = deepFreeze([
+            ['First', 5],
+            ['Second', 2],
+            ['Third', -1],
+            ['Fourth', 3],
+            ['Fifth', 2],
+          ])
+          const compare = (item1, item2) => item1[1] - item2[1]
+          expect(sort(items, compare)).to.deep.equal([
+            ['Third', -1],
+            ['Fifth', 2],
+            ['Second', 2],
+            ['Fourth', 3],
+            ['First', 5],
+          ])
+        })
+      }
     })
   }
 })
