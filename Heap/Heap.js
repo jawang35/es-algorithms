@@ -57,20 +57,18 @@ export default class Heap {
       if (
         leftIndex < this.array.length &&
         this.isOrderedBefore(this.array[leftIndex], this.array[first])
-      ) {
-        first = leftIndex
-      }
+      ) first = leftIndex
+
       if (
         rightIndex < this.array.length &&
         this.isOrderedBefore(this.array[rightIndex], this.array[first])
-      ) {
-        first = rightIndex
-      }
+      ) first = rightIndex
+
       if (first === parentIndex) return
 
-      const temp = this.array[parentIndex]
+      const tempParent = this.array[parentIndex]
       this.array[parentIndex] = this.array[first]
-      this.array[first] = temp
+      this.array[first] = tempParent
       parentIndex = first
     }
   }
