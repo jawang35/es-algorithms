@@ -7,11 +7,7 @@ const heapSort = (items, compare) => {
   const heap = new Heap(items, isOrderedBefore)
 
   for (let i = 0; i < items.length; i += 1) {
-    const nextItem = heap.array[0]
-    heap.array[0] = heap.array[items.length - 1 - i]
-    heap.array[items.length - 1 - i] = nextItem
-    sortedItems[i] = heap.array.pop()
-    heap.shiftDown(0)
+    sortedItems[i] = heap.remove()
   }
 
   return sortedItems
