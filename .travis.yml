@@ -1,16 +1,12 @@
 language: node_js
-env:
-  - CXX=g++-4.8
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
 node_js:
   - 4
   - 6
+install:
+  - npm install
+script:
+  - npm run lint && npm run test:coverage
 before_install:
   - pip install --user codecov
 after_success:
-  - codecov --file coverage/lcov-report/index.html --disable search
+  - codecov --file coverage/coverage.json --disable search
