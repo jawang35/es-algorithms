@@ -4,8 +4,8 @@
   "description": "Data structures and algorithms in modern ES/JavaScript",
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./ && echo \"eslint: no lint errors\"",
-    "test": "npm run lint && ./node_modules/.bin/mocha \"./{,!(node_modules)/**/}*.spec.js\" --require babel-register",
-    "test:coverage": "npm run clean:coverage && npm run coverage",
+    "test:simple": "./node_modules/.bin/mocha \"./{,!(node_modules)/**/}*.spec.js\" --require babel-register",
+    "test": "npm run lint && npm run clean:coverage && npm run coverage",
     "coverage": "./node_modules/.bin/babel-istanbul cover ./node_modules/.bin/_mocha -- \"./{,!(node_modules)/**/}*.spec.js\"",
     "clean:coverage": "rm -rf coverage",
     "open:lcov": "open ./coverage/lcov-report/index.html"

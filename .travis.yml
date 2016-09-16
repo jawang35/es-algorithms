@@ -10,3 +10,7 @@ addons:
 node_js:
   - 4
   - 6
+before_install:
+  - pip install --user codecov
+after_success:
+  - codecov --file coverage/lcov-report/index.html --disable search
