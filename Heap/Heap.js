@@ -47,39 +47,32 @@ export default class Heap {
   }
 
   shiftDown(index) {
-    const isOrderedBefore = (value1, value2) => {
-      if (value1 === undefined || value2 === undefined) {
-        return false
-      }
-      return this.isOrderedBefore(value1, value2)
-    }
-
-    const parent = this.array[index]
-
-    if (parent === undefined) return
-
     let parentIndex = index
-    let leftIndex = leftIndexOf(parentIndex)
-    let rightIndex = rightIndexOf(parentIndex)
 
-    while (
-      isOrderedBefore(this.array[leftIndex], parent) ||
-      isOrderedBefore(this.array[rightIndex], parent)
-    ) {
-      if (isOrderedBefore(this.array[rightIndex], this.array[leftIndex])) {
-        this.array[parentIndex] = this.array[rightIndex]
-        parentIndex = rightIndex
-        leftIndex = leftIndexOf(parentIndex)
-        rightIndex = rightIndexOf(parentIndex)
-      } else {
-        this.array[parentIndex] = this.array[leftIndex]
-        parentIndex = leftIndex
-        leftIndex = leftIndexOf(parentIndex)
-        rightIndex = rightIndexOf(parentIndex)
+    while (true) { // eslint-disable-line
+      const leftIndex = leftIndexOf(parentIndex)
+      const rightIndex = rightIndexOf(parentIndex)
+      let first = parentIndex
+
+      if (
+        leftIndex < this.array.length &&
+        this.isOrderedBefore(this.array[leftIndex], this.array[first])
+      ) {
+        first = leftIndex
       }
-    }
+      if (
+        rightIndex < this.array.length &&
+        this.isOrderedBefore(this.array[rightIndex], this.array[first])
+      ) {
+        first = rightIndex
+      }
+      if (first === parentIndex) return
 
-    this.array[parentIndex] = parent
+      const temp = this.array[parentIndex]
+      this.array[parentIndex] = this.array[first]
+      this.array[first] = temp
+      parentIndex = first
+    }
   }
 
   insert(value) {
