@@ -3,11 +3,11 @@
   "parser": "babel-eslint",
   "globals": {
     "describe": true,
-    "it": true
+    "it": true,
   },
   "rules": {
     "semi": [2, "never"],
     "import/no-extraneous-dependencies": [2, { "optionalDependencies": false, "peerDependencies": false}],
-    "import/no-named-as-default": [0]
-  }
+    "import/no-named-as-default": [0],
+  },
 }
