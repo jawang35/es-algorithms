@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import BinarySearchTree from './BinarySearchTree'
 
-describe('BinarySearchTree', () => {
+describe('Binary Search Tree', () => {
   it('initializes node from key, value', () => {
     const root = new BinarySearchTree(1, 2)
     expect(root).to.deep.equal({

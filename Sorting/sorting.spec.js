@@ -8,12 +8,12 @@ import quickSort from './quickSort'
 import selectionSort from './selectionSort'
 
 const sorts = new Map([
-  ['bubbleSort', bubbleSort],
-  ['heapSort', heapSort],
-  ['insertionSort', insertionSort],
-  ['mergeSort', mergeSort],
-  ['quickSort', quickSort],
-  ['selectionSort', selectionSort],
+  ['Bubble Sort', bubbleSort],
+  ['Heap Sort', heapSort],
+  ['Insertion Sort', insertionSort],
+  ['Merge Sort', mergeSort],
+  ['Quick Sort', quickSort],
+  ['Selection Sort', selectionSort],
 ])
 
 describe('Sorting', () => {

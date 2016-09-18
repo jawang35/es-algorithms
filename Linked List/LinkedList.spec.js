@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import deepFreeze from 'deep-freeze'
 import LinkedList from './LinkedList'
 
-describe('LinkedList', () => {
+describe('Linked List', () => {
   const createThreeNodeList = () => new LinkedList('First Node', 'Second Node', 'Third Node')
   const indexOutOfRange = 'Index out of range'
 

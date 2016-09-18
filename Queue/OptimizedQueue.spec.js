@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import OptimizedQueue from './OptimizedQueue'
 
-describe('OptimizedQueue', () => {
+describe('Optimized Queue', () => {
   it('initializes with constructor arguments', () => {
     const emptyQueue = new OptimizedQueue()
     expect(emptyQueue.array).to.deep.equal([])

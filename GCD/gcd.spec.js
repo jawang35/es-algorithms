@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import gcd from './gcd'
 
-describe('gcd', () => {
+describe('GCD', () => {
   it('returns the GCD of two numbers', () => {
     expect(gcd(72, 42)).to.equal(6)
     expect(gcd(9, 45)).to.equal(9)

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import PriorityQueue from './PriorityQueue'
 
-describe('PriorityQueue', () => {
+describe('Priority Queue', () => {
   it('knows if it is empty', () => {
     const emptyPriorityQueue = new PriorityQueue()
     const priorityQueue = new PriorityQueue([1])
