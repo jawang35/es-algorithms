@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./ && echo \"eslint: no lint errors\"",
     "test": "./node_modules/.bin/mocha \"./{,!(node_modules)/**/}*.spec.js\" --require babel-register",
-    "test:coverage": "npm run clean:coverage && npm run coverage",
+    "test:coverage": "npm run clean:coverage && npm run coverage && codecov",
     "coverage": "./node_modules/.bin/babel-istanbul cover ./node_modules/.bin/_mocha -- \"./{,!(node_modules)/**/}*.spec.js\"",
     "clean:coverage": "rm -rf coverage",
     "open:lcov": "open ./coverage/lcov-report/index.html"
@@ -30,6 +30,7 @@
     "babel-register": "^6.11.6",
     "babel-runtime": "^6.11.6",
     "chai": "^3.5.0",
+    "codecov": "^3.0.0",
     "deep-freeze": "0.0.1",
     "dirty-chai": "^1.2.2",
     "eslint": "^3.5.0",
