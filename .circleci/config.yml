@@ -5,9 +5,15 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
+      - restore_cache:
+          key: node_modules-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install
           command: yarn --frozen-lockfile --non-interactive
+      - save_cache:
+          key: node_modules-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+          paths:
+            - "node_modules"
       - run:
           name: Lint
           command: yarn lint
